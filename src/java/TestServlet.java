@@ -33,10 +33,20 @@ public class TestServlet extends HttpServlet {
         
         
       // replace "email" with the name of your input field
+      
+      
+        String what = request.getParameter("what");
+        String rdesc = request.getParameter("rdesc");
+
+      
         String sub = request.getParameter("subject");
         String des = request.getParameter("desc");
         
+        String phead = request.getParameter("phead");
         String plink = request.getParameter("plink");
+        if("".equals(plink)){
+            plink="0";
+        }
         String pdesc = request.getParameter("pdesc");
        
            
@@ -79,12 +89,13 @@ public class TestServlet extends HttpServlet {
 
                 
                  
-            String sql = "INSERT INTO posts (`links`, `pdesc`, `currdate`,`by`) VALUES (?, ?, ?,?)";
+            String sql = "INSERT INTO posts (`headline`,`links`, `pdesc`, `currdate`,`by`) VALUES (?,?, ?, ?,?)";
                 try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                    statement.setString(1, plink);
-                    statement.setString(2, pdesc);
-                    statement.setString(3, formattedDate);
-                    statement.setString(4, userid);
+                    statement.setString(1, phead);
+                    statement.setString(2, plink);
+                    statement.setString(3, pdesc);
+                    statement.setString(4, formattedDate);
+                    statement.setString(5, userid);
                     
                     int rowsInserted = statement.executeUpdate();
                     if (rowsInserted > 0) {
@@ -94,6 +105,28 @@ public class TestServlet extends HttpServlet {
                         out.println("<button onclick=\"window.parent.document.querySelector('.popup').remove()\">Close</button>");
                         
                     }   }
+            conn.close();
+            }else if(operation.equals("request")){
+                
+                
+                 
+            String sql = "INSERT INTO requests (`requestfor`,`rdesc`, `currdate`,`requestby`) VALUES (?,?,?,?)";
+                try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                    statement.setString(1, what);
+                    statement.setString(2, rdesc );
+                    statement.setString(3, formattedDate);
+                    statement.setString(4, userid);
+                    
+                    int rowsInserted = statement.executeUpdate();
+                    if (rowsInserted > 0) {
+                        
+                        out.println("Requested successfully!");
+                        
+                        session.setAttribute("recordAdded", true);
+                        
+                        out.println("<script> window.parent.document.querySelector('.popup').remove();</script>");
+                       
+                         }   }
             conn.close();
             }
         } catch (ClassNotFoundException |   SQLException e) {

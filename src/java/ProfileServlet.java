@@ -1,105 +1,3 @@
-///*
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-// * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
-// */
-//
-//import java.io.IOException;
-//import java.io.PrintWriter;
-//import jakarta.servlet.ServletException;
-//import jakarta.servlet.http.HttpServlet;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-//import jakarta.servlet.annotation.WebServlet;
-//import java.io.File;
-//import java.util.List;
-//import java.sql.DriverManager;
-//import java.sql.Connection;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.Blob;
-//import java.io.ByteArrayInputStream;
-//import jakarta.servlet.jsp.JspWriter;
-//
-//
-//
-//
-///**
-// *
-// * @author krish
-// */
-//@WebServlet("/retrieve-files")
-//public class RetrieveFilesServlet extends HttpServlet {
-//
-//    
-//    
-//    
-//    
-//    
-//    public class ByteArrayFile extends File {
-//    private final ByteArrayInputStream byteArrayInputStream;
-//
-//    public ByteArrayFile(String name, ByteArrayInputStream byteArrayInputStream) {
-//        super(name);
-//        this.byteArrayInputStream = byteArrayInputStream;
-//    }
-//
-//    public ByteArrayInputStream getByteArrayInputStream() {
-//        return byteArrayInputStream;
-//    }
-//}
-//    
-//    
-//    
-//    
-//    
-//    private static final long serialVersionUID = 1L;
-//    private final String url = "jdbc:mysql://localhost/test";
-//    private final String user = "root";
-//    private final String password = "root";
-//    
-//    
-//    
-//    
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//
-//        PrintWriter out = response.getWriter();
-//        List<File> files = new ArrayList<>();
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection conn = DriverManager.getConnection(url, user, password);
-//            out.println("connected");
-//            String sql = "SELECT * FROM users";
-//            PreparedStatement statement = conn.prepareStatement(sql);
-//            ResultSet resultSet = statement.executeQuery();
-//            
-//            while (resultSet.next()) {
-//                int id = resultSet.getInt("id");
-//                String name = resultSet.getString("name");
-//                Blob content = resultSet.getBlob("content");
-//                if (content != null) {
-//                     byte[] bytes = content.getBytes(1, (int) content.length());
-//                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-//                ByteArrayFile file = new ByteArrayFile(name, byteArrayInputStream);
-//                files.add(file);
-//                }
-//            }
-//            
-//            statement.close();
-//            conn.close();
-//        }catch(ClassNotFoundException | SQLException e){
-//            
-//        }
-//         request.setAttribute("files", files);
-//          request.getRequestDispatcher("files.jsp").forward(request, response);
-//    }
-//
-//
-//}
-
 
 import java.io.*;
 import java.sql.*;
@@ -132,13 +30,13 @@ public class ProfileServlet extends HttpServlet
             PreparedStatement ps =con.prepareStatement ("select * from users u, login l where u.author=l.id and l.id="+userid);
          
            
-
+            out.println("<html><head><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\" integrity=\"sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65\" crossorigin=\"anonymous\"></head><body>");
             // Use the username to display a personalized message or perform other actions
            if(userid !=null) {
-
+                
             out.println("<div class='home-container'>");
-            out.print ("<table width=50% border=1>");
-            out.print ("<caption>Employee Details:</caption>");
+            out.print ("<table class='table table-bordered' width=50% border=1>");
+           
 
             ResultSet rs = ps.executeQuery ();
 
@@ -158,13 +56,14 @@ public class ProfileServlet extends HttpServlet
             while (rs.next ())
          {
             
-             out.print ( "</td><td>" +  rs.getString (2) + " </td><td>" +"<td><a href= download?id="+ rs.getInt(1)  +">view</a></td>"+" </td><td>" +"<td><a href= download?id="+ rs.getInt(1)  +"&operation=download>Download</a></td>"+"<td><a href= delete?id="+ rs.getInt(1)  +"&operation=delete>Delete</a></td></tr>");
+             out.print ( "</td><td>" +  rs.getString (2) + " </td><td>"+"</td><td>" +  rs.getString (4) + " </td><td>"+"</td><td>" +  rs.getString (5) + " </td><td>" +"<td><a href= download?id="+ rs.getInt(1)  +">view</a></td>"+" </td><td>" +"<td><a href= download?id="+ rs.getInt(1)  +"&operation=download>Download</a></td>"+"<td><a href= delete?id="+ rs.getInt(1)  +"&operation=delete>Delete</a></td></tr>");
          }
             out.print ("</table></div>");
             out.print("<p>"+request.getParameter("message")+"</p>"  );
           }else{
                out.print("");
            }
+           out.println("</body></html>");
         }
         catch (ClassNotFoundException | SQLException e2)
         {

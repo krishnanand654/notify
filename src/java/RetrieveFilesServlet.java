@@ -122,14 +122,20 @@ public class RetrieveFilesServlet extends HttpServlet
         RequestDispatcher sidebar = request.getRequestDispatcher("sidebar.jsp");
         sidebar.include(request, response);
         
-     
+        String type = request.getParameter("type");
+        String sub = request.getParameter("subject");
         
         try
         {
             Class.forName ("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection ("jdbc:mysql://localhost:3306/test", "root", "root");
+            PreparedStatement ps ;
+            if(sub != null){
+                ps = con.prepareStatement ("select * from users u, login l where u.author = l.id and type='"+type+"' and subject='"+sub+"'");
+            }else{
+                ps = con.prepareStatement ("select * from users u, login l where u.author = l.id and type='"+type+"'");
+            }
             
-            PreparedStatement ps =con.prepareStatement ("select * from users u, login l where u.author = l.id");
 //         SELECT u.name, u.subject, u.author, l.username, u.desc, p.links, p.pdesc, p.by, p.currdate FROM users u INNER JOIN login l ON u.author = l.id LEFT JOIN posts p ON p.by = l.id ORDER BY COALESCE(p.currdate, u.currdate) DESC;
             HttpSession session = request.getSession();
             String userid = (String) session.getAttribute("userid");

@@ -25,8 +25,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 //    String username = request.getParameter("username");
 //    String password = request.getParameter("password");
-   String username = "test";
-    String password = "test";
+   String username = "krishnanand";
+    String password = "123";
 
     try {
         // Connect to the database
@@ -48,7 +48,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             HttpSession session = request.getSession();
             session.setAttribute("userid", id);
             session.setAttribute("username", username);
-            response.sendRedirect("retrieve-files");
+            response.sendRedirect("home.jsp");
         } else {
              
             

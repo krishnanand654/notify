@@ -5,7 +5,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css"/>
@@ -14,17 +14,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         
         <form action ="TestServlet" method="POST" enctype="multipart/form-data">
             <!--<input type="hidden" name="operation" value="insert">-->
-            <label>Title</label>
-            <input type="text" name="phead" />
-            
-            <label>Links</label>
-            <input type="text" name="plink" />
-            
+            <label>Requesting for ?</label>
+            <input type="text" name="what" />
+        
             <label>Description</label>
-            <input type="text" name="pdesc"/>
+            <input type="text" name="rdesc"/>
             
             
-            <input type="submit" name="operation" value="insertpost"/>
+            <input type="submit" name="operation" value="request"/>
             
              
 
