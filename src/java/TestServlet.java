@@ -37,10 +37,13 @@ public class TestServlet extends HttpServlet {
       
         String what = request.getParameter("what");
         String rdesc = request.getParameter("rdesc");
+        
+        String subname = request.getParameter("subname");
 
       
         String sub = request.getParameter("subject");
         String des = request.getParameter("desc");
+        String type = request.getParameter("type");
         
         String phead = request.getParameter("phead");
         String plink = request.getParameter("plink");
@@ -66,7 +69,7 @@ public class TestServlet extends HttpServlet {
                     String fileName = filePart.getSubmittedFileName();
                     InputStream fileContent = filePart.getInputStream();
 
-            String sql = "INSERT INTO users (`name`, `content`, `author`, `subject`, `desc`, `date` ) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users (`name`, `content`, `author`, `subject`, `desc`, `date`,`type` ) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement statement = conn.prepareStatement(sql)) {
                     statement.setString(1, fileName);
                     statement.setBlob(2, fileContent);
@@ -74,6 +77,7 @@ public class TestServlet extends HttpServlet {
                     statement.setString(4, sub);
                     statement.setString(5, des);
                     statement.setString(6, formattedDate);
+                    statement.setString(7, type);
                     
                     int rowsInserted = statement.executeUpdate();
                     if (rowsInserted > 0) {
@@ -124,11 +128,34 @@ public class TestServlet extends HttpServlet {
                         
                         session.setAttribute("recordAdded", true);
                         
-                        out.println("<script> window.parent.document.querySelector('.popup').remove();</script>");
-                       
+                        out.println("<button onclick=\"window.parent.location.reload(); window.close();\">Close</button>");
+
+                      
+
                          }   }
             conn.close();
-            }
+            }else if(operation.equals("subjectinsert")){
+                 String sql = "INSERT INTO subjects (`subname`,`date`,`by`) VALUES (?,?,?)";
+                try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                    statement.setString(1, subname);
+                   
+                    statement.setString(2, formattedDate);
+                    statement.setString(3, userid);
+                    
+                    int rowsInserted = statement.executeUpdate();
+                    if (rowsInserted > 0) {
+                        
+                        out.println("subject added successfully!");
+                        
+                      
+                        
+                        out.println("<button onclick=\"window.parent.location.reload(); window.close();\">Close</button>");
+
+                      
+
+                         }   }
+            conn.close();
+        }
         } catch (ClassNotFoundException |   SQLException e) {
             out.println("Error: " + e.getMessage());
         }

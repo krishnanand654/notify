@@ -3,6 +3,7 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
+<%@ page import="java.sql.*, java.util.*" %>
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -10,17 +11,53 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css"/>
     </head>
+    
+    
+    
+
+
+    
+    
     <body>
+        
+        <%
+  String dbUrl = "jdbc:mysql://localhost:3306/test";
+  String dbUser = "root";
+  String dbPassword = "root";
+  String query = "SELECT * FROM subjects";
+  
+  
+   
+
+  try {
+    // Connect to the database and execute the query
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(query);
+    if(conn == null){
+     out.println("not connected");
+    }
+    
+    // Output the YouTube video embed code for each video link
+     
+    %>
+    
+    
+        
         
         <form action ="TestServlet" method="POST" enctype="multipart/form-data">
             <!--<input type="hidden" name="operation" value="insert">-->
             <label>subject</label>
                        
             <select name="subject" >
-                <option value="java">Java</option>
-                <option value="web">Web</option>
-                <option value="distributed">DS</option>
-                <option value="dbms">DBMS</option>
+                 <%
+    while (rs.next()) {
+    String subname = rs.getString("subname");
+    %>
+                <option value="<%=subname%>"><%=subname%></option>
+              
+                <%}%>
               </select>
             
             <label>description</label>
@@ -69,7 +106,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
           var files = e.dataTransfer.files;
           fileInput.files = files;
         }
+        
 
         </script>
-        
+           <%
+    
+
+    // Close the database connection
+    rs.close();
+    stmt.close();
+    conn.close();
+  } catch (ClassNotFoundException e) {
+    e.printStackTrace();
+  }
+%>
 </html>

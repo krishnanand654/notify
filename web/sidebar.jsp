@@ -13,6 +13,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="style.css"/>
            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+           
+         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="sidebar">
@@ -48,14 +52,25 @@
         </ul>
             
             <div class="new">
-                <div>
-            <a   onclick="showForm()" ><i class="fa-solid fa-plus icons-new" style="color: rgba(55, 53, 47, 0.4);"></i>New Note</a></div>
+              <div class="dropdown">
+                <button class="btn btn-new" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-plus icons-new" style="color: rgba(55, 53, 47, 0.4);"></i>  <span style="font-weight: 500; color:rgba(25, 23, 17, 0.6);">New</span>
+                </button>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+           <div>
+            <a  style="color: rgba(25, 23, 17, 0.6)" onclick="showForm()" ><i class="fa-solid fa-plus icons-new" style="color: rgba(55, 53, 47, 0.4);"></i>New Note</a></div>
             <div>
-            <a  onclick="showForm2()" ><i class="fa-solid fa-plus icons-new" style="color: rgba(55, 53, 47, 0.4);"></i>New Post</a>
+            <a  style="color: rgba(25, 23, 17, 0.6);" onclick="showForm2()" ><i class="fa-solid fa-plus icons-new" style="color: rgba(55, 53, 47, 0.4);"></i>New Post</a>
             </div>
             <div>
-            <a  onclick="showForm3()" ><i class="fa-solid fa-plus icons-new" style="color: rgba(55, 53, 47, 0.4);"></i>New Request</a>
+            <a  style="color: rgba(25, 23, 17, 0.6);" onclick="showForm3()" ><i class="fa-solid fa-plus icons-new" style="color: rgba(55, 53, 47, 0.4);"></i>New Request</a>
             </div>
+               <div>
+            <a  style="color: rgba(25, 23, 17, 0.6);" onclick="showForm4()" ><i class="fa-solid fa-plus icons-new" style="color: rgba(55, 53, 47, 0.4);"></i>New Subject</a>
+            </div>
+                </div>
+                
+</div>
         </div>
 
             
@@ -64,11 +79,12 @@
             <p>please login</p>
             <%}%>
     </body>
+    
     <script >
         function showForm() {
                 var popup = document.createElement('div');
                 popup.classList.add('popup');
-                popup.innerHTML = '<iframe src="upload.html"></iframe>';
+                popup.innerHTML = '<iframe src="upload.jsp"></iframe>';
                 document.body.appendChild(popup);
             }
             
@@ -84,6 +100,12 @@
                 popup.innerHTML = '<iframe src="request.html"></iframe>';
                 document.body.appendChild(popup);
             }
-
+        function showForm4() {
+                var popup = document.createElement('div');
+                popup.classList.add('popup');
+                popup.innerHTML = '<iframe src="subject.html"></iframe>';
+                document.body.appendChild(popup);
+            }
+            
         </script>
 </html>

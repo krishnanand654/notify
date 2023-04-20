@@ -6,7 +6,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.RequestDispatcher;
 
-@WebServlet("/retrieve-files")
+
 public class ProfileServlet extends HttpServlet
 {
    
@@ -56,13 +56,14 @@ public class ProfileServlet extends HttpServlet
             while (rs.next ())
          {
             
-             out.print ( "</td><td>" +  rs.getString (2) + " </td><td>"+"</td><td>" +  rs.getString (4) + " </td><td>"+"</td><td>" +  rs.getString (5) + " </td><td>" +"<td><a href= download?id="+ rs.getInt(1)  +">view</a></td>"+" </td><td>" +"<td><a href= download?id="+ rs.getInt(1)  +"&operation=download>Download</a></td>"+"<td><a href= delete?id="+ rs.getInt(1)  +"&operation=delete>Delete</a></td></tr>");
+             out.print ( "</td><td>" +  rs.getString (2) + " </td>"+"<td>" +  rs.getString (5) + " </td><td>" +"<td><a href= download?id="+ rs.getInt(1)  +">view</a></td>"+" </td><td>" +"<td><a href= download?id="+ rs.getInt(1)  +"&operation=download>Download</a></td>"+"<td><a href= delete?id="+ rs.getInt(1)  +"&operation=delete>Delete</a></td>"+"<td><a href= edit.jsp?id="+ rs.getInt(1)  +"&operation=edit>edit</a></td></tr>");
          }
             out.print ("</table></div>");
             out.print("<p>"+request.getParameter("message")+"</p>"  );
           }else{
                out.print("");
            }
+           
            out.println("</body></html>");
         }
         catch (ClassNotFoundException | SQLException e2)

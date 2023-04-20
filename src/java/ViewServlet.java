@@ -13,7 +13,7 @@ public class ViewServlet extends HttpServlet
 {
    
     @Override
-    public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         int id = Integer.parseInt(request.getParameter("id"));
         PrintWriter out = response.getWriter ();
@@ -50,6 +50,7 @@ public class ViewServlet extends HttpServlet
        
             while (rs.next ())
          {
+             
              out.print ( 
                      "<div class='view-ctn'><p class='path'><a href='retrieve-files'>My Notes &gt; </a> "  +  rs.getString ("subject").substring(0, 1).toUpperCase() + rs.getString ("subject").substring(1) + "</p><div>"
                              + "<div class='view-heading'> "

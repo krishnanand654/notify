@@ -20,6 +20,7 @@
             RequestDispatcher sidebar = request.getRequestDispatcher("sidebar.jsp");
             sidebar.include(request, response);
             %>
+            
         <div class="folder">
             <h1>Theory</h1>
             <div class="card-flex">
@@ -29,27 +30,46 @@
                     <p><i class="fa-solid fa-folder fa-2xl" style="color: #6b6b6b;"></i><p>
                     <h2>Web Security and vulnerability Testing</h2>
                 </div>
-                <a href="retrieve-files?type=note&subject=java" > <img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></a>
+                <form action="retrieve-files" method="post">
+                    <input type="hidden" name="type" value="note" />
+                    <input type="hidden" name="subject" value="java" />
+                    <button class='arrow' type="submit"><img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></button>
+                 </form>
+
+               
+              
             </div>
              <div class='card'>
                  <div class='card-content'>
                     <p><i class="fa-solid fa-folder fa-2xl" style="color: #6b6b6b;"></i><p>
                     <h2>DBMS</h2>
                  </div>
-                 <a href="retrieve-files?type=note&subject=dbms" > <img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></a>
+                   <form action="retrieve-files" method="post">
+                    <input type="hidden" name="type" value="note" />
+                    <input type="hidden" name="subject" value="dbms" />
+                    <button class='arrow' type="submit"><img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></button>
+                 </form>
             </div>
              <div class='card'>
                  <div>
                 <p><i class="fa-solid fa-folder fa-2xl" style="color: #6b6b6b;"></i><p>
                 <h2>Distributed System</h2>
                  </div>
-                <a href="retrieve-files?type=note&subject=distributed" > <img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></a>
+                  <form action="retrieve-files" method="post">
+                    <input type="hidden" name="type" value="note" />
+                    <input type="hidden" name="subject" value="distributed" />
+                    <button class='arrow' type="submit"><img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></button>
+                 </form>
             </div> <div class='card'>
                 <div>
                 <p><i class="fa-solid fa-folder fa-2xl" style="color: #6b6b6b;"></i><p>
                 <h2>Web and Database Security</h2>
                 </div>
-                <a href="retrieve-files?type=note&subject=web" > <img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></a>
+                 <form action="retrieve-files" method="post">
+                    <input type="hidden" name="type" value="note" />
+                    <input type="hidden" name="subject" value="web" />
+                    <button class='arrow' type="submit"><img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></button>
+                 </form>
             </div>
             </div>
             
@@ -62,28 +82,40 @@
                 <p><i class="fa-solid fa-folder fa-2xl" style="color: #6b6b6b;"></i><p>
                 <h2>Java</h2>
                 </div>
-                <a href="retrieve-files?type=code&subject=java" > <img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></a>
+                 <form action="retrieve-files" method="post">
+                    <input type="hidden" name="type" value="assignment" />
+                    <input type="hidden" name="subject" value="java" />
+                    <button class='arrow' type="submit"><img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></button>
+                 </form>
             </div>
             <div class='card'>
                 <div>
                 <p><i class="fa-solid fa-folder fa-2xl" style="color: #6b6b6b;"></i><p>
                 <h2>DBMS lab</h2>
                 </div>
-                <a href="retrieve-files?type=note&subject=java" > <img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></a>
+                 <form action="retrieve-files" method="post">
+                    <input type="hidden" name="type" value="assignment" />
+                    <input type="hidden" name="subject" value="dbms" />
+                    <button class='arrow' type="submit"><img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></button>
+                 </form>
             </div>
             <div class='card'>
                 <div>
                 <p><i class="fa-solid fa-folder fa-2xl" style="color: #6b6b6b;"></i><p>
                 <h2>Web security lab</h2>
                 </div>
-                <a href="retrieve-files?type=note&subject=java" > <img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></a>
+                 <form action="retrieve-files" method="post">
+                    <input type="hidden" name="type" value="assignment" />
+                    <input type="hidden" name="subject" value="web" />
+                    <button class='arrow' type="submit"><img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png"/></button>
+                 </form>
             </div>
                  
         </div>
             <!--<img src="https://img.icons8.com/ios-filled/256/circled-chevron-right.png" class="fade-in">-->
-
+       
         </div>
-        
+       
     </body>
     <script>
         const image = document.querySelector('.fade-in');

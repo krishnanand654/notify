@@ -107,14 +107,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.RequestDispatcher;
+import java.net.*;
 
 @WebServlet("/retrieve-files")
 public class RetrieveFilesServlet extends HttpServlet
 {
    
     @Override
-    public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+      
+        
         PrintWriter out = response.getWriter ();
         out.print("<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body class='split'>");
         
@@ -158,12 +161,18 @@ public class RetrieveFilesServlet extends HttpServlet
                      + "<h3>"  +  rs.getString ("subject").substring(0, 1).toUpperCase() + rs.getString ("subject").substring(1) + "</h3>"
                              
                                      + "</div>"
-                                     + "<div>"
+                                     + "<div>"+
+                     "<form action=\"view\" method=\"post\">\n" +
+                        "    <input type=\"hidden\" name=\"id\" value=\"" + rs.getInt(1) + "\" />\n" +
+                        "    <button class='arrow' type=\"submit\"><img src=\"https://img.icons8.com/ios-filled/256/circled-chevron-right.png\"/></button>\n" +
+                        "</form>"
+
+                             
                                      
-                                                                     +"<a  href= view?id="+ rs.getInt(1)  +" target = '/frames/view'><i class=\"fa-solid fa-cloud-arrow-down\" style='margin:0 10px 0; color:rgba(25, 23, 17, 0.6)'></i></a>"
-                                                                     + "</div>"
-                                                                     + "</div>"
-                                                                     + "</div>");
+                                     +" <i class=\"fa-solid fa-cloud-arrow-down\" style='margin:0 10px 0; color:rgba(25, 23, 17, 0.6)'></i></a>"
+                                     + "</div>"
+                                     + "</div>"
+                                     + "</div>");
             
          }
          

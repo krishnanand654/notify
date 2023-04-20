@@ -14,14 +14,21 @@
           </head>
           <body >
               
-              <div><img class='background' src='https://mdbootstrap.com/img/new/textures/full/171.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'/> 
+              <div><img class='background' src='https://mdbootstrap.com/img/new/textures/full/171.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'/> </div>
+                  <div class="home-req-flex">
+                  <div>
                   <div class='mag-ctn'>
                   <div class='top-links'>
-                        <a href="folder.jsp">Notes</a>
-                        <a href="retrieve-files?type=assignment">Assignments</a>
+                        <a class='head-list' href="folder.jsp">Notes</a>
+                         <form action="retrieve-files" method="post">
+                            <input type="hidden" name="type" value="assignment" />
+                           <button class='head-list' type="submit">Assignment</button>
+                         </form>
+                        <a class='head-list' href="requestbar.jsp">Requests</a>
                     </div>
-                      <% if (session.getAttribute("recordAdded") != null) { %>
-                              
+                      <% 
+                            if (session.getAttribute("recordAdded") != null) { %>
+                             
                             <div class="alert alert-success" role="alert">
                               New request available
                             </div>
@@ -112,12 +119,8 @@
     </div>
             
     </div>
-</body>
-</html>
-
-
-
-    <%
+    </div>
+        <%
     }
 
     // Close the database connection
@@ -128,3 +131,12 @@
     e.printStackTrace();
   }
 %>
+    </div>
+   
+    </div>
+</body>
+</html>
+
+
+
+

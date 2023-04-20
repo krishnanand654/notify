@@ -40,12 +40,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     
 }
 
+.btn-new{
+    font-weight: 500;
+}
+
 .sidebar-item{
    margin:10px;
    font-weight: 500;
    color:rgb(55, 53, 47);
    font-size: 16px;
 }
+
 
 .profile-logo{
     background:rgba(55, 53, 47, 0.09);
@@ -63,12 +68,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     list-style: none;
     text-decoration: none;
 }
+
+
+
 .sidebar-list li a{
     text-decoration: none;
     margin: 0 18px 0;
     font-size:14px;
     font-weight: 500;
     color: rgba(25, 23, 17, 0.6);
+}
+.sidebar-list li a:hover{
+    color:black;
 }
 
 .sidebar-list li a .icons{
@@ -297,11 +308,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .top-links{
     margin-top:20px ;
-    
+    display: flex;
      border-bottom:1px solid #dfdfdf;
      padding: 0px 0 20px;
 }
-.top-links a{
+.top-links .head-list{
     text-decoration: none;
     background:black;
     padding: 5px 10px 5px;  
@@ -309,7 +320,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color:white;
     font-weight: 500;
     margin-right:10px;
-    
+       border: 1px solid transparent;
+}
+
+.top-links .head-list:hover{
+    color:black;
+    background:white;
+    border:1px solid black;
+ 
 }
 
 .mag-ctn{
@@ -463,7 +481,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .login-img{
-    margin:153px 0 0 ;
+    margin:172px 0 0 ;
     width:auto;
     
     border-radius:0 10px 10px 0;
@@ -474,4 +492,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     margin: 20px 0 0;
     width:200px;
     
+}
+
+.home-req-flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.arrow{
+    border:none;
+    outline: none;
+    background:none;
+}
+
+.drop-down{
+    background:red;
+    width:100px;
+    height:100px;
+    position:absolute;
+    top:600px;
+    left:170px;
+    visibility:hidden;
+}
+
+.new li a:hover ~ .drop-down{
+    visibility:visible;
 }
